@@ -1,0 +1,15 @@
+version: "3"
+services:
+  jekyll:
+    image: jekyll/jekyll:latest
+    container_name: local_jekyll
+    volumes:
+      - ../pages:/usr/src/app
+      - ../_site:/srv/jekyll/_site
+      - ./cmd:/cmd
+    environment:
+      # - JEKYLL_ENV=production
+      - JEKYLL_ENV=deploy
+    command: bash /cmd/serve.sh
+    ports:
+      - "4000:4000"
